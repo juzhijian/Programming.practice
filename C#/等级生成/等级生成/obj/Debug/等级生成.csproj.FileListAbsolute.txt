@@ -6,3 +6,12 @@ E:\等级生成\等级生成\obj\Debug\等级生成.Properties.Resources.resourc
 E:\等级生成\等级生成\obj\Debug\等级生成.csproj.GenerateResource.Cache
 E:\等级生成\等级生成\obj\Debug\等级生成.exe
 E:\等级生成\等级生成\obj\Debug\等级生成.pdb
+E:\SourceTree\Programming.practice\C#\等级生成\等级生成\bin\Debug\等级生成.exe.config
+E:\SourceTree\Programming.practice\C#\等级生成\等级生成\obj\Debug\等级生成.exe
+E:\SourceTree\Programming.practice\C#\等级生成\等级生成\obj\Debug\等级生成.pdb
+E:\SourceTree\Programming.practice\C#\等级生成\等级生成\bin\Debug\等级生成.exe
+E:\SourceTree\Programming.practice\C#\等级生成\等级生成\bin\Debug\等级生成.pdb
+E:\SourceTree\Programming.practice\C#\等级生成\等级生成\obj\Debug\等级生成.csprojResolveAssemblyReference.cache
+E:\SourceTree\Programming.practice\C#\等级生成\等级生成\obj\Debug\等级生成.Form1.resources
+E:\SourceTree\Programming.practice\C#\等级生成\等级生成\obj\Debug\等级生成.Properties.Resources.resources
+E:\SourceTree\Programming.practice\C#\等级生成\等级生成\obj\Debug\等级生成.csproj.GenerateResource.Cache

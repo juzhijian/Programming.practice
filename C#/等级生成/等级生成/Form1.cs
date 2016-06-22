@@ -57,7 +57,7 @@ namespace 等级生成
             int i;
             for (i = 1; i < a; i++)
             {
-                等级生成 = 等级生成 + ",ExperiencePointsForLevel[" + i + "]=10";
+                等级生成 += ",ExperiencePointsForLevel[" + i + "]=10";
             }
             return 等级生成;
         }
@@ -68,7 +68,7 @@ namespace 等级生成
             int i;
             for (i = 1; i < a; i++)
             {
-                研究点生成 = 研究点生成 + "OverridePlayerLevelEngramPoints=" + b + "\n";
+                研究点生成 += "OverridePlayerLevelEngramPoints=" + b + "\n";
             }
             return 研究点生成;
         }
