@@ -7,8 +7,8 @@ IDI_ICON1 ICON DISCARDABLE "images/123.ico"
 #endif
 
 VS_VERSION_INFO VERSIONINFO
-    FILEVERSION 1,2,0,00
-    PRODUCTVERSION 1,2,0,00
+    FILEVERSION 2,0,0,00
+    PRODUCTVERSION 2,0,0,00
     FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
     FILEFLAGS VS_FF_DEBUG
@@ -25,8 +25,8 @@ VS_VERSION_INFO VERSIONINFO
             BEGIN
                 VALUE "CompanyName", "夏小雨\0"
                 VALUE "FileDescription", "方舟等级生成工具\0"
-                VALUE "FileVersion", "1.2.0.00\0"
-                VALUE "ProductVersion", "1.2.0.00\0"
+                VALUE "FileVersion", "2.0.0.00\0"
+                VALUE "ProductVersion", "2.0.0.00\0"
                 VALUE "LegalCopyright", "版权所有 (C) 夏小雨\0"
                 VALUE "LegalTrademarks", "夏小雨\0"
                 VALUE "OriginalFilename", "ARK-Grade.exe\0"
