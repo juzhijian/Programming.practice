@@ -1,8 +1,0 @@
-E:\等级生成\等级生成\bin\Release\等级生成.exe.config
-E:\等级生成\等级生成\bin\Release\等级生成.exe
-E:\等级生成\等级生成\bin\Release\等级生成.pdb
-E:\等级生成\等级生成\obj\Release\等级生成.Form1.resources
-E:\等级生成\等级生成\obj\Release\等级生成.Properties.Resources.resources
-E:\等级生成\等级生成\obj\Release\等级生成.csproj.GenerateResource.Cache
-E:\等级生成\等级生成\obj\Release\等级生成.exe
-E:\等级生成\等级生成\obj\Release\等级生成.pdb

@@ -81,7 +81,7 @@ void MainWindow::on_pushButton_clicked()
     QString sh="[/script/shootergame.shootergamemode]\n";
 
     //玩家等级与研究点数
-    int num1,num2,num3;
+    unsigned int num1,num2,num3;
     num1 = ui->lineEdit_15->text().toInt();
     num2 = ui->lineEdit_16->text().toInt();
     //恐龙等级
@@ -90,11 +90,11 @@ void MainWindow::on_pushButton_clicked()
     quint16 pd = ui->buttonGroup->checkedId();
     QString player_leve_generate,dinosaur_level_generate;
 
-    long L_num1,L_num2;//经验
+    unsigned long L_num1,L_num2;//经验
     L_num1 = ui->lineEdit->text().toLong();
     L_num2 = ui->lineEdit_2->text().toLong();
 
-    int num4,num5;//经验系数
+    unsigned int num4,num5;//经验系数
     num4 = ui->lineEdit_20->text().toInt();
     num5 = ui->lineEdit_19->text().toInt();
 

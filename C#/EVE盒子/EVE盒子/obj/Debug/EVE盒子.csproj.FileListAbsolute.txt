@@ -8,3 +8,13 @@ E:\EVE游戏辅助\EVE盒子\EVE盒子\obj\Debug\EVE盒子.exe
 E:\EVE游戏辅助\EVE盒子\EVE盒子\obj\Debug\EVE盒子.pdb
 E:\EVE游戏辅助\EVE盒子\EVE盒子\obj\Debug\EVE盒子.主界面.resources
 E:\EVE游戏辅助\EVE盒子\EVE盒子\obj\Debug\EVE盒子.登陆界面.resources
+E:\SourceTree\Programming.practice\C#\EVE盒子\EVE盒子\bin\Debug\EVE盒子.exe.config
+E:\SourceTree\Programming.practice\C#\EVE盒子\EVE盒子\bin\Debug\EVE盒子.exe
+E:\SourceTree\Programming.practice\C#\EVE盒子\EVE盒子\bin\Debug\EVE盒子.pdb
+E:\SourceTree\Programming.practice\C#\EVE盒子\EVE盒子\obj\Debug\EVE盒子.csprojResolveAssemblyReference.cache
+E:\SourceTree\Programming.practice\C#\EVE盒子\EVE盒子\obj\Debug\EVE盒子.主界面.resources
+E:\SourceTree\Programming.practice\C#\EVE盒子\EVE盒子\obj\Debug\EVE盒子.Properties.Resources.resources
+E:\SourceTree\Programming.practice\C#\EVE盒子\EVE盒子\obj\Debug\EVE盒子.登陆界面.resources
+E:\SourceTree\Programming.practice\C#\EVE盒子\EVE盒子\obj\Debug\EVE盒子.csproj.GenerateResource.Cache
+E:\SourceTree\Programming.practice\C#\EVE盒子\EVE盒子\obj\Debug\EVE盒子.exe
+E:\SourceTree\Programming.practice\C#\EVE盒子\EVE盒子\obj\Debug\EVE盒子.pdb
