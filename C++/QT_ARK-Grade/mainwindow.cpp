@@ -8,6 +8,7 @@
 #include <QFileDialog>
 #include <QtGui>
 #include <QtWidgets>
+#include <QVector>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -74,45 +75,46 @@ QString function_Research(int a,int b)
     return Research;
 }
 
-//生成文件
+//单击生成按钮生成文件
 void MainWindow::on_pushButton_clicked()
 {
     //文件生成
     QString sh="[/script/shootergame.shootergamemode]\n";
 
     //玩家等级与研究点数
-    unsigned int num1,num2,num3;
-    num1 = ui->lineEdit_15->text().toInt();
-    num2 = ui->lineEdit_16->text().toInt();
+    QVector<int> num(2);//声明动态数组
+    num[0] = ui->lineEdit_15->text().toInt();
+    num[1] = ui->lineEdit_16->text().toInt();
     //恐龙等级
-    num3 = ui->lineEdit_57->text().toInt();
+    num[2] = ui->lineEdit_57->text().toInt();
+
     //经验设置
     quint16 pd = ui->buttonGroup->checkedId();
     QString player_leve_generate,dinosaur_level_generate;
 
-    unsigned long L_num1,L_num2;//经验
-    L_num1 = ui->lineEdit->text().toLong();
-    L_num2 = ui->lineEdit_2->text().toLong();
-
-    unsigned int num4,num5;//经验系数
-    num4 = ui->lineEdit_20->text().toInt();
-    num5 = ui->lineEdit_19->text().toInt();
-
     if(pd==0)//仿官方
     {
-        player_leve_generate = function_level_normal(num1);
-        dinosaur_level_generate = function_level_normal(num3);
+        player_leve_generate = function_level_normal(num[0]);
+        dinosaur_level_generate = function_level_normal(num[2]);
     }
     if(pd==1)//自定义
     {
-        player_leve_generate = function_level_custom(num1,L_num1,num4);
-        dinosaur_level_generate = function_level_custom(num3,L_num2,num5);
+        QVector<long> L_num(1);//经验
+        L_num[0] = ui->lineEdit->text().toLong();
+        L_num[1] = ui->lineEdit_2->text().toLong();
+        QVector<int> num1(2);//经验系数
+        num1[0] = ui->lineEdit_20->text().toInt();
+        num1[1] = ui->lineEdit_19->text().toInt();
+
+        player_leve_generate = function_level_custom(num[0],L_num[0],num1[0]);//等级，经验，系数
+        dinosaur_level_generate = function_level_custom(num[2],L_num[1],num1[1]);
     }
     if(pd==2)//成神
     {
-        player_leve_generate = function_level_god(num1);
-        dinosaur_level_generate = function_level_god(num3);
+        player_leve_generate = function_level_god(num[0]);
+        dinosaur_level_generate = function_level_god(num[2]);
     }
+
     //等级设置
     QString player_levle,dinosaur_level;//玩家 恐龙
     player_levle="LevelExperienceRampOverrides=(" + player_leve_generate + ")\n";
@@ -158,13 +160,11 @@ void MainWindow::on_pushButton_clicked()
             "PerLevelStatsMultiplier_DinoWild[9]=" + QString::number(ui->lineEdit_68->text().toInt()) + "\n";
 
     //ui->textBrowser->setText(QString::number(aaaa));
-    ui->textBrowser->setText(sh+player+DinoTamed+DinoWild+player_levle+dinosaur_level+function_Research(num1,num2));
-
+    //生成文本
+    ui->textBrowser->setText(sh+player+DinoTamed+DinoWild+player_levle+dinosaur_level+function_Research(num[0],num[1]));
 
     //导出INI文件
-
     QString path = QFileDialog::getSaveFileName(this, tr("Open ini"), "Game", tr("ini Files (*.ini)"));
-
     if(!path.isEmpty())
     {
         QFile file(path);
@@ -176,20 +176,19 @@ void MainWindow::on_pushButton_clicked()
         QTextStream out(&file);
         out << ui->textBrowser->toPlainText();
         file.close();
+        QMessageBox::warning(this, QString::fromLocal8Bit("提示"), QStringLiteral("已经成功保存文件\n%1").arg(path));
     }
     else
     {
         QMessageBox::information(this, QString::fromLocal8Bit("警告"), QStringLiteral("您没有保存文件！"));
     }
-
-
 }
+
 
 void MainWindow::on_radioButton_3_clicked()
 {
 
     ui->textBrowser->setText(QStringLiteral("您选择了成神版!"));
-
 }
 
 void MainWindow::on_radioButton_2_clicked()

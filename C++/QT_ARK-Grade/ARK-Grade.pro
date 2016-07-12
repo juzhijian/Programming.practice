@@ -17,7 +17,8 @@ SOURCES += main.cpp\
 
 RC_FILE += ark.rc
 		
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    ark.rc
 
 FORMS    += mainwindow.ui
 
