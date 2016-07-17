@@ -1,12 +1,13 @@
-#ifndef SIGN_IN_H
+﻿#ifndef SIGN_IN_H
 #define SIGN_IN_H
 
 #include "mainwindow.h"
+#include "registerdialog.h"
 #include <QDialog>
 #include <QDebug>
-#include <QSqlQuery>    //执行语句类
-#include <QSqlDatabase> //数据库类
-#include <QSqlRecord>   //返回记录类
+#include <QSqlQuery>        //执行语句类
+#include <QSqlDatabase>     //数据库类
+#include <QSqlRecord>       //返回记录类
 #include <QtSql>
 #include <QSqlError>
 #include <QSqlTableModel>
@@ -16,7 +17,6 @@
 namespace Ui {
 class sign_in;
 }
-
 class sign_in : public QDialog
 {
     Q_OBJECT
@@ -30,8 +30,9 @@ public:
 private slots:
 
     void on_loginbtn_clicked();
-
     void on_exitbtn_clicked();
+
+    void on_registerbtn_clicked();
 
 private:
     Ui::sign_in *ui;
@@ -40,7 +41,5 @@ private:
 
 signals:
     void toMainWindow(QString,QString);
-
 };
-
 #endif // SIGN_IN_H

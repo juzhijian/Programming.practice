@@ -2,7 +2,6 @@
 #include <QApplication>
 #include <QIcon>
 #include <QSqlDatabase>
-#include <QDebug>
 #include <QMessageBox>
 
 int main(int argc, char *argv[])

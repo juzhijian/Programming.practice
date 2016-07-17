@@ -14,20 +14,21 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    sign_in.cpp
+    sign_in.cpp \
+    registerdialog.cpp
 
 RC_FILE += eve.rc
 
 HEADERS  += mainwindow.h \
     sign_in.h \
+    registerdialog.h
 
 FORMS    += mainwindow.ui \
-    sign_in.ui
+    sign_in.ui \
+    registerdialog.ui
 
 RESOURCES += \
     eve.rc \
     eves.qrc
 
-#INCLUDEPATH += "C:/mysql-5.7.11-winx64/include"
-
-#LIBS += "C:/mysql-5.7.11-winx64/lib/libmysql.lib"
+DISTFILES +=
