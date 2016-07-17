@@ -1,4 +1,4 @@
-ï»¿#include "sign_in.h"
+#include "sign_in.h"
 #include "ui_sign_in.h"
 #include <QtWidgets>
 
@@ -7,31 +7,110 @@ sign_in::sign_in(QWidget *parent) :
     ui(new Ui::sign_in)
 {
     ui->setupUi(this);
+    //´´½¨QSqlTableModel
+    model=new QSqlTableModel(this);
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    //ÉèÖÃµÇÂ¼¶Ô»°¿òµÄ±êÌâ
+    this->setWindowTitle(QStringLiteral("µÇÂ¼"));
+    //ÉèÖÃµÇÂ¼¶Ô»°¿òµÄÍ¼±ê
+    this->setWindowIcon(QIcon(":/eves/img/book.jpg"));
+    //ÉèÖÃµÇÂ¼¶Ô»°¿ò´óÐ¡¹Ì¶¨Îª399*252
+    this->setMaximumSize(399,252);
+    this->setMinimumSize(399,252);    
+    //ÉèÖÃÈý¸ö°´Å¥µÄÍ¼±ê
+    ui->exitbtn->setIcon(QIcon(":/eves/img/exit.png"));
+    ui->registerbtn->setIcon(QIcon(":/eves/img/log.png"));
+    ui->loginbtn->setIcon(QIcon(":/eves/img/Enter.png"));
+    //ÉèÖÃÍ¼Æ¬
+    ui->piclabel->setPixmap(QPixmap(":/student/img/log.png").scaled(ui->piclabel->size()));
+    //ÉèÖÃlineeditÌáÊ¾Óï¾ä
+    ui->userline->setPlaceholderText(QStringLiteral("ÇëÊäÈëÓÃ»§Ãû"));
+    ui->passwordline->setPlaceholderText(QStringLiteral("ÇëÊäÈëÃÜÂë"));
+    //ÉèÖÃpasslineeditÏÔÊ¾ÎªÃÜÂëÄ£Ê½
+    ui->passwordline->setEchoMode(QLineEdit::Password);
 }
 
+/* Îö¹¹º¯Êý */
 sign_in::~sign_in()
-{
+{    
     delete ui;
 }
 
-void sign_in::on_pushButton_clicked()
+/* ÓÃ»§µÇÂ¼ */
+void sign_in::on_loginbtn_clicked()
 {
-    if(this->ui->lineEdit_name->text().trimmed()== tr("admin") &&
-       this->ui->lineEdit_pwd->text().trimmed()==tr("admin"))
+    //¼ì²éÊÇ·ñÎª¿Õ
+    if(!this->judgeEmpty())
     {
-        accept();
+        ui->passwordline->clear();
+        return;
     }
-    else
+
+    model->setTable("user");
+    model->select();
+
+    int i;
+    for(i=0;i<model->rowCount();i++)
     {
-        QMessageBox::warning(this, QString::fromLocal8Bit("è­¦å‘Š"), QStringLiteral("ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯!"));
-        this->ui->lineEdit_name->clear();
-        this->ui->lineEdit_pwd->clear();
-        this->ui->lineEdit_name->setFocus();
+        QSqlRecord record=model->record(i);
+
+        if(record.value(2)==ui->userline->text()&&
+                record.value(3)==ui->passwordline->text())
+        {
+            QString str1=QStringLiteral("µÇÂ¼³É¹¦");
+            QString str2=record.value(2).toString();
+            QString str3=QStringLiteral("ÕËºÅ");
+            QMessageBox::information(this,QString::fromLocal8Bit("ÌáÊ¾"),str3+str2+str1,QMessageBox::Yes);
+            this->clearAll();
+            //´´½¨¹ÜÀí´°¿Ú
+            mw = new MainWindow;
+            //Á¬½Ó¹ÜÀí´°¿ÚºÍµÇÂ¼¶Ô»°¿òÐÅºÅÓë²Û
+            connect(mw,SIGNAL(toLoginDialog()),this,SLOT(showNormal()));
+            mw->show();
+            connect(this,SIGNAL(toMainWindow(QString,QString)),mw,SLOT(comeLoginDialog(QString,QString)));
+            emit toMainWindow(str2,record.value(0).toString());
+            this->hide();
+            return;
+        }
+        else if(record.value(2)==ui->userline->text()&&
+                record.value(3)!=ui->passwordline->text())
+       {
+            QMessageBox::information(this, QString::fromLocal8Bit("ÌáÊ¾"), QStringLiteral("ÃÜÂëÊäÈëÓÐÎó£¡"),QMessageBox::Yes);
+            this->clearAll();
+            return;
+        }
     }
+    QMessageBox::warning(this, QString::fromLocal8Bit("ÌáÊ¾"), QStringLiteral("ÓÃ»§²»´æÔÚ,Çë×¢²á£¡"),QMessageBox::Yes);
+    this->clearAll();
+    return;
 }
 
-//å–æ¶ˆ
-void sign_in::on_pushButton_2_clicked()
+/* Çå¿Õ±à¼­¿ò */
+void sign_in::clearAll()
+{
+    ui->userline->clear();
+    ui->passwordline->clear();
+}
+
+/* ¼ì²éÊÇ·ñÎª¿Õ */
+bool sign_in::judgeEmpty()
+{
+    if(ui->userline->text().isEmpty())
+    {
+        QMessageBox::warning(this, QString::fromLocal8Bit("¾¯¸æ"), QStringLiteral("ÓÃ»§Ãû²»ÄÜÎª¿Õ£¡"));
+        return false;
+    }
+    if(ui->passwordline->text().isEmpty())
+    {
+        QMessageBox::warning(this, QString::fromLocal8Bit("¾¯¸æ"), QStringLiteral("ÃÜÂë²»ÄÜÎª¿Õ£¡"));
+        return false;
+    }
+    else
+        return true;
+}
+
+/* È¡ÏûµÇÂ¼ */
+void sign_in::on_exitbtn_clicked()
 {
     this->close();
 }

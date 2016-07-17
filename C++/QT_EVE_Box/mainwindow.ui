@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>338</width>
-    <height>570</height>
+    <width>1083</width>
+    <height>674</height>
    </rect>
   </property>
   <property name="font">
@@ -28,7 +28,7 @@
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
-        <string>人物设置</string>
+        <string>人物</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
         <item row="0" column="0">
@@ -154,6 +154,9 @@
              <property name="text">
               <string>精炼产出</string>
              </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
             </widget>
            </item>
            <item row="3" column="0">
@@ -177,7 +180,22 @@
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>Tab 2</string>
+        <string>市场</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>制造</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>后勤</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>资产</string>
        </attribute>
       </widget>
      </widget>
