@@ -1,6 +1,5 @@
 ﻿#include "sign_in.h"
 #include "ui_sign_in.h"
-#include <QtWidgets>
 
 sign_in::sign_in(QWidget *parent) :
     QDialog(parent),
@@ -54,27 +53,31 @@ void sign_in::on_loginbtn_clicked()
             QString str1=QStringLiteral("登录成功");
             QString str2=record.value(2).toString();
             QString str3=QStringLiteral("账号");
-            QMessageBox::information(this,QString::fromLocal8Bit("提示"),str3+str2+str1,QMessageBox::Yes);
+            QString str4=QString::number(i);
+            QMessageBox::information(this,QString::fromLocal8Bit("提示"),
+                                     str3+str2+str1,QMessageBox::Yes);
             this->clearAll();
-            //创建管理窗口
+            //创建主窗口
             mw = new MainWindow;
-            //连接管理窗口和登录对话框信号与槽
-            //connect(mw,SIGNAL(toLoginDialog()),this,SLOT(showNormal()));
+            //连接主窗口和登录对话框信号与槽
+            connect(mw,SIGNAL(tosign_in()),this,SLOT(showNormal()));
             mw->show();
-            //connect(this,SIGNAL(toMainWindow(QString,QString)),mw,SLOT(comeLoginDialog(QString,QString)));
-            emit toMainWindow(str2,record.value(0).toString());
+            connect(this,SIGNAL(toMainWindow(QString,QString)),mw,SLOT(comesign_in(QString,QString)));
+            emit toMainWindow(str2,str4);
             this->hide();
             return;
         }
         else if(record.value(2)==ui->userline->text()&&
                 record.value(3)!=ui->passwordline->text())
        {
-            QMessageBox::information(this, QString::fromLocal8Bit("提示"), QStringLiteral("密码输入有误！"),QMessageBox::Yes);
+            QMessageBox::information(this, QString::fromLocal8Bit("提示"),
+                                     QStringLiteral("密码输入有误！"),QMessageBox::Yes);
             this->clearAll();
             return;
         }
     }
-    QMessageBox::warning(this, QString::fromLocal8Bit("提示"), QStringLiteral("用户不存在,请注册！"),QMessageBox::Yes);
+    QMessageBox::warning(this, QString::fromLocal8Bit("提示"),
+                         QStringLiteral("用户不存在,请注册！"),QMessageBox::Yes);
     this->clearAll();
     return;
 }
@@ -109,6 +112,7 @@ void sign_in::on_exitbtn_clicked()
     this->close();
 }
 
+/* 用户注册 */
 void sign_in::on_registerbtn_clicked()
 {
     RegisterDialog d(this);

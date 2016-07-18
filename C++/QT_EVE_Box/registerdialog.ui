@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>301</width>
-    <height>378</height>
+    <width>305</width>
+    <height>390</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>305</width>
+    <height>390</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>305</width>
+    <height>390</height>
+   </size>
   </property>
   <property name="font">
    <font>
@@ -41,7 +53,7 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -52,9 +64,13 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_11">
     <item>
-     <widget class="QPushButton" name="registerbtn_2">
+     <widget class="QPushButton" name="registerbtn">
       <property name="text">
        <string>注册</string>
+      </property>
+      <property name="icon">
+       <iconset resource="eves.qrc">
+        <normaloff>:/images/Enter.png</normaloff>:/images/Enter.png</iconset>
       </property>
      </widget>
     </item>
@@ -72,20 +88,24 @@
      </spacer>
     </item>
     <item>
-     <widget class="QPushButton" name="returnbtn_2">
+     <widget class="QPushButton" name="returnbtn">
       <property name="text">
        <string>返回</string>
+      </property>
+      <property name="icon">
+       <iconset resource="eves.qrc">
+        <normaloff>:/images/exit.png</normaloff>:/images/exit.png</iconset>
       </property>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>21</x>
      <y>71</y>
-     <width>261</width>
+     <width>272</width>
      <height>231</height>
     </rect>
    </property>
@@ -100,12 +120,18 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="userline_2">
+       <widget class="QLineEdit" name="userline">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>165</width>
+          <height>0</height>
+         </size>
         </property>
         <property name="maximumSize">
          <size>
@@ -127,12 +153,18 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="passwordline_2">
+       <widget class="QLineEdit" name="passwordline">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>165</width>
+          <height>0</height>
+         </size>
         </property>
         <property name="maximumSize">
          <size>
@@ -154,12 +186,18 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="passwordline1_2">
+       <widget class="QLineEdit" name="passwordline1">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>165</width>
+          <height>0</height>
+         </size>
         </property>
         <property name="maximumSize">
          <size>
@@ -181,12 +219,18 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_5">
+       <widget class="QLineEdit" name="lineEdit_qq">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>165</width>
+          <height>0</height>
+         </size>
         </property>
         <property name="maximumSize">
          <size>
@@ -208,12 +252,18 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_6">
+       <widget class="QLineEdit" name="lineEdit_maill">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>165</width>
+          <height>0</height>
+         </size>
         </property>
         <property name="maximumSize">
          <size>
@@ -228,19 +278,33 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_10">
       <item>
-       <widget class="QLabel" name="label_9">
+       <widget class="QLabel" name="yanzhenglabel">
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="yanzhengline_2">
+       <widget class="QLineEdit" name="yanzhengline">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>165</width>
+          <height>0</height>
+         </size>
         </property>
         <property name="maximumSize">
          <size>
@@ -255,6 +319,8 @@
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="eves.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -1,8 +1,5 @@
 ﻿#include "sign_in.h"
 #include <QApplication>
-#include <QIcon>
-#include <QSqlDatabase>
-#include <QMessageBox>
 
 int main(int argc, char *argv[])
 {
@@ -30,7 +27,9 @@ int main(int argc, char *argv[])
     }
     else
     {
-        QMessageBox::information(NULL, QString::fromLocal8Bit("提示"), QStringLiteral("系统载入数据库失败，无法运行！"),QMessageBox::Yes);
+        QMessageBox::information(NULL, QString::fromLocal8Bit("提示"),
+                                 QStringLiteral("系统载入数据库失败，无法运行！"),QMessageBox::Yes);
     }
+
     return 0;
 }

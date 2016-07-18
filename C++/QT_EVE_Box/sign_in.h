@@ -12,7 +12,6 @@
 #include <QSqlError>
 #include <QSqlTableModel>
 #include <QPalette>
-#include <QMessageBox>
 
 namespace Ui {
 class sign_in;
@@ -24,21 +23,17 @@ class sign_in : public QDialog
 public:
     explicit sign_in(QWidget *parent = 0);
     ~sign_in();
+
     void clearAll();
     bool judgeEmpty();
-
 private slots:
-
     void on_loginbtn_clicked();
     void on_exitbtn_clicked();
-
     void on_registerbtn_clicked();
-
 private:
     Ui::sign_in *ui;
     QSqlTableModel *model;
     MainWindow *mw;
-
 signals:
     void toMainWindow(QString,QString);
 };

@@ -30,5 +30,3 @@ FORMS    += mainwindow.ui \
 RESOURCES += \
     eve.rc \
     eves.qrc
-
-DISTFILES +=
