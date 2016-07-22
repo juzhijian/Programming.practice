@@ -38,9 +38,9 @@ private slots:
     void on_exitbtn_clicked();
 
 private:
-    Ui::sign_in *ui;
-    QSqlTableModel *model;
-    MainWindow *mw;
+	Ui::sign_in * ui;
+    QSqlTableModel * model;
+	MainWindow * mw;
 signals:
     void toMainWindow(QString,QString);
 };
