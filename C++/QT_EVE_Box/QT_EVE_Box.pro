@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2016-06-29T21:59:19
+# Project created by QtCreator 2016-07-22T23:41:56
 #
 #-------------------------------------------------
 
@@ -11,22 +11,20 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = QT_EVE_Box
 TEMPLATE = app
 
-
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    sign_in.cpp \
-    registerdialog.cpp
-
 RC_FILE += eve.rc
 
-HEADERS  += mainwindow.h \
-    sign_in.h \
+SOURCES += main.cpp\
+        sign_in.cpp \
+    mainwindow.cpp \
+    registerdialog.cpp
+
+HEADERS  += sign_in.h \
+    mainwindow.h \
     registerdialog.h
 
-FORMS    += mainwindow.ui \
-    sign_in.ui \
+FORMS    += sign_in.ui \
+    mainwindow.ui \
     registerdialog.ui
 
 RESOURCES += \
-    eve.rc \
     eves.qrc

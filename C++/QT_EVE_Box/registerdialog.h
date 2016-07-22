@@ -1,7 +1,8 @@
-#ifndef REGISTERDIALOG_H
+﻿#ifndef REGISTERDIALOG_H
 #define REGISTERDIALOG_H
 
 #include <QDialog>
+
 #include <QDebug>
 #include <QPalette>
 #include <QSqlTableModel>
@@ -10,28 +11,28 @@
 #include <QMessageBox>
 
 namespace Ui {
-class RegisterDialog;
+class registerdialog;
 }
 
-class RegisterDialog : public QDialog
+class registerdialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit RegisterDialog(QWidget *parent = 0);
-    ~RegisterDialog();
+    explicit registerdialog(QWidget *parent = 0);
+    ~registerdialog();
+
     void setyanzheng();
     void clearAll();
     bool judgeEmpty();
 
-
 private slots:
-    void on_returnbtn_clicked();
-
     void on_registerbtn_clicked();
 
+    void on_returnbtn_clicked();
+
 private:
-    Ui::RegisterDialog *ui;
+    Ui::registerdialog *ui;
     int yanzheng;
     QSqlTableModel *model;
 };

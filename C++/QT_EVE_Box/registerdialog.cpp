@@ -1,9 +1,9 @@
 ﻿#include "registerdialog.h"
 #include "ui_registerdialog.h"
 
-RegisterDialog::RegisterDialog(QWidget *parent) :
+registerdialog::registerdialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::RegisterDialog)
+    ui(new Ui::registerdialog)
 {
     ui->setupUi(this);
     //创建model,进行数据库操作
@@ -28,19 +28,19 @@ RegisterDialog::RegisterDialog(QWidget *parent) :
     this->setyanzheng();
 }
 
-RegisterDialog::~RegisterDialog()
+registerdialog::~registerdialog()
 {
     delete ui;
 }
 
 /* 返回 */
-void RegisterDialog::on_returnbtn_clicked()
+void registerdialog::on_returnbtn_clicked()
 {
     this->accept();
 }
 
 /* 设置验证码 */
-void RegisterDialog::setyanzheng()
+void registerdialog::setyanzheng()
 {
     QPalette p1;
     p1.setColor(QPalette::WindowText,Qt::red);
@@ -52,7 +52,7 @@ void RegisterDialog::setyanzheng()
 }
 
 /* 清空lineedit的上的文本 */
-void RegisterDialog::clearAll()
+void registerdialog::clearAll()
 {
     ui->userline->clear();
     ui->passwordline->clear();
@@ -63,7 +63,7 @@ void RegisterDialog::clearAll()
 }
 
 /* 判断lineedit是否为空 */
-bool RegisterDialog::judgeEmpty()
+bool registerdialog::judgeEmpty()
 {
     if(ui->userline->text().isEmpty())
     {
@@ -96,7 +96,7 @@ bool RegisterDialog::judgeEmpty()
 }
 
 /* 注册 */
-void RegisterDialog::on_registerbtn_clicked()
+void registerdialog::on_registerbtn_clicked()
 {
     int i;
     //判断lineedit是否为空

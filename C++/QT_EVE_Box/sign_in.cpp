@@ -115,7 +115,7 @@ void sign_in::on_exitbtn_clicked()
 /* 用户注册 */
 void sign_in::on_registerbtn_clicked()
 {
-    RegisterDialog d(this);
+    registerdialog d(this);
     this->hide();
     if(d.exec()==QDialog::Accepted)
     {

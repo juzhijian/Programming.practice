@@ -1,7 +1,8 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+
 #include <QDebug>
 #include <QSqlTableModel>
 #include <QSqlRecord>
@@ -21,13 +22,16 @@ public:
 
     void Hcy_xieru();
 
+private slots:
+
+    void comesign_in(QString,QString);
+
+    void on_pushButton_3_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString studentname,studentnum;
     QSqlTableModel *model;
-
-private slots:
-    void comesign_in(QString,QString);
 
 signals:
     void tosign_in();
