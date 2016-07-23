@@ -18,12 +18,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->buttonGroup->setId(ui->radioButton,0);//设置ID
     ui->buttonGroup->setId(ui->radioButton_2,1);
     ui->buttonGroup->setId(ui->radioButton_3,2);
+    //设置注册对话框标题
+    QString vv = "V2.1";
+    this->setWindowTitle(QStringLiteral("方舟等级生成 ")+vv+QStringLiteral(" 32bit"));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+//更新
 
 //等级函数仿官方版
 QString function_level_normal(int a)
