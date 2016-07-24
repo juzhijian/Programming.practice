@@ -1,14 +1,12 @@
 ﻿#include "registerdialog.h"
 #include "ui_registerdialog.h"
+#include "mysql.h"
 
 registerdialog::registerdialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::registerdialog)
 {
     ui->setupUi(this);
-    //创建model,进行数据库操作
-	model = new QSqlTableModel(this);
-	model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     //设置注册对话框标题
 	this->setWindowTitle(QStringLiteral("注册用户"));
     //设置两行密码lineedit的显示
@@ -103,7 +101,6 @@ bool registerdialog::judgeEmpty()
 /* 注册 */
 void registerdialog::on_registerbtn_clicked()
 {
-    int i;
     //判断lineedit是否为空
     if(!this->judgeEmpty())
     {
@@ -134,51 +131,101 @@ void registerdialog::on_registerbtn_clicked()
         this->setyanzheng();
         return;
     }
-    //设置table为user表
-    model->setTable("user");
-    model->select();
-    for(i=0;i<model->rowCount();i++)
+    //判断账号格式是否正确
+    QRegExp user_name("[A-Za-z0-9_]{6,30}");
+
+    if (!user_name.exactMatch(ui->userline->text()))
     {
-        QSqlRecord record=model->record(i);
-        //判断学生信息已经存在
-        if((record.value(2)==ui->userline->text()&&record.value(3)!=""))
-        {
-			QMessageBox::warning(this, QStringLiteral("警告"),
-				QStringLiteral("用户已存在"), QMessageBox::Yes);
-            this->clearAll();
-            this->setyanzheng();
-            return;
-            }
-        }
-    //如果学生信息不存在,添加学生信息进数据库
-    if(i==model->rowCount())
+        QMessageBox::warning(this, QStringLiteral("警告"),
+            QStringLiteral("账号使用字母与数字!"), QMessageBox::Yes);
+        //ui->userline->clear();
+        //ui->passwordline->clear();
+        //ui->passwordline1->clear();
+        //ui->yanzhengline->clear();
+        this->setyanzheng();
+        return;
+    }
+    //判断密码格式是否正确
+    QRegExp user_password("[^\u4E00-\u9FA5]{6,20}");
+
+    if (!user_password.exactMatch(ui->passwordline->text()))
     {
-		QSqlRecord record1 = model->record();
+        QMessageBox::warning(this, QStringLiteral("警告"),
+            QStringLiteral("密码不能使用汉字,需要6-20位!"), QMessageBox::Yes);
+        //ui->userline->clear();
+        //ui->passwordline->clear();
+        //ui->passwordline1->clear();
+        //ui->yanzhengline->clear();
+        this->setyanzheng();
+        return;
+    }
+    //判断QQ格式是否正确
+    QRegExp user_qq("^[0-9]{5,10}");
+
+    if (!user_qq.exactMatch(ui->lineEdit_qq->text()))
+    {
+        QMessageBox::warning(this, QStringLiteral("警告"),
+            QStringLiteral("QQ号输入错误!"), QMessageBox::Yes);
+        //ui->userline->clear();
+        //ui->passwordline->clear();
+        //ui->passwordline1->clear();
+        //ui->yanzhengline->clear();
+        this->setyanzheng();
+        return;
+    }
+    //判断邮箱格式是否正确
+    QRegExp user_maill("^(([_\\w-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([_\\w-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?))$");
+
+    if (!user_maill.exactMatch(ui->lineEdit_maill->text()))
+    {
+        QMessageBox::warning(this, QStringLiteral("警告"),
+            QStringLiteral("邮箱输入错误!"), QMessageBox::Yes);
+        //ui->userline->clear();
+        //ui->passwordline->clear();
+        //ui->passwordline1->clear();
+        //ui->yanzhengline->clear();
+        this->setyanzheng();
+        return;
+    }
+    //创建查询语句
+    QString name = ui->userline->text();
+    QString sql = "select * from user where user_name = '"+ name + "'";
+    //判断账户信息是否存在,如果信息不存在,添加信息进数据库
+    if(mySql.queryDB_new(sql))
+    {
         //取系统时间
-		QDateTime current_date_time = QDateTime::currentDateTime();
-		QString current_date = current_date_time.toString("yyyy-MM-dd hh:mm:ss");
+        QDateTime current_date_time = QDateTime::currentDateTime();
+        QString current_date = current_date_time.toString("yyyy-MM-dd hh:mm:ss");
         //写入数据
-		record1.setValue("group_id", 0);
-		record1.setValue("user_name", ui->userline->text());
-		record1.setValue("user_password", ui->passwordline->text());
-		record1.setValue("user_qq", ui->lineEdit_qq->text());
-		record1.setValue("user_maill", ui->lineEdit_maill->text());
-		record1.setValue("register_time", current_date);
-		model->insertRecord(-1, record1);
+        QString sql_1 = "insert into user(group_id, user_name, user_password, user_qq, user_maill, register_time) values(0,'"
+                +ui->userline->text()+"','"+ui->passwordline->text()+"','"+ui->lineEdit_qq->text()+"','"
+                +ui->lineEdit_maill->text()+"','"+current_date+"')";
+        qDebug()<<sql;
+        QSqlQuery query;
+        query.exec(sql_1);
+        //判断信息是否上传数据库成功
+        if(!mySql.queryDB_new(sql))
+        {
+            QMessageBox::information(this, QStringLiteral("警告"),
+                QStringLiteral("恭喜你注册成功^*^"), QMessageBox::Yes);
+            this->accept();
         }
-    //判断学生信息是否上传数据库成功
-    if(model->submitAll())
-    {
-		QMessageBox::information(this, QStringLiteral("警告"),
-			QStringLiteral("恭喜你注册成功^*^"), QMessageBox::Yes);
-        this->accept();
+        //上传不成功
+        else {
+            QMessageBox::information(this, QStringLiteral("警告"),
+                QStringLiteral("注册失败请重新注册"), QMessageBox::Yes);
+        }
+
     }
-    //上传不成功
-    else
-    {
-		QMessageBox::information(this, QStringLiteral("警告"),
-			QStringLiteral("注册失败请重新注册"), QMessageBox::Yes);
+    else {
+        QMessageBox::warning(this, QStringLiteral("警告"),
+                             QStringLiteral("用户已存在"), QMessageBox::Yes);
+        this->clearAll();
+        this->setyanzheng();
+        return;
     }
+
     this->clearAll();
     this->setyanzheng();
+
 }

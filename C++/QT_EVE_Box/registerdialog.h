@@ -2,13 +2,10 @@
 #define REGISTERDIALOG_H
 
 #include <QDialog>
+#include "mysql.h"
 
-#include <QDebug>
 #include <QPalette>
-#include <QSqlTableModel>
-#include <QSqlRecord>
 #include <QTime>
-#include <QMessageBox>
 
 namespace Ui {
 class registerdialog;
@@ -30,11 +27,11 @@ private slots:
     void on_registerbtn_clicked();
 
     void on_returnbtn_clicked();
-
 private:
     Ui::registerdialog *ui;
     int yanzheng;
     QSqlTableModel *model;
+    MySql mySql;
 };
 
 #endif // REGISTERDIALOG_H

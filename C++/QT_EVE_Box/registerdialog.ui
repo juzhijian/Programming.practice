@@ -150,6 +150,9 @@
           <height>16777215</height>
          </size>
         </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Normal</enum>
+        </property>
        </widget>
       </item>
      </layout>
@@ -183,6 +186,9 @@
           <height>16777215</height>
          </size>
         </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Normal</enum>
+        </property>
        </widget>
       </item>
      </layout>
@@ -215,6 +221,9 @@
           <width>165</width>
           <height>16777215</height>
          </size>
+        </property>
+        <property name="cursorPosition">
+         <number>0</number>
         </property>
        </widget>
       </item>
@@ -320,7 +329,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="E:/QT-code/QT_EVE_Box/eves.qrc"/>
+  <include location="eves.qrc"/>
  </resources>
  <connections/>
 </ui>

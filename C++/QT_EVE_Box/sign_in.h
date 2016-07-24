@@ -6,15 +6,6 @@
 
 #include <QDialog>
 
-#include <QDebug>
-#include <QSqlQuery>        //执行语句类
-#include <QSqlDatabase>     //数据库类
-#include <QSqlRecord>       //返回记录类
-#include <QtSql>
-#include <QSqlError>
-#include <QSqlTableModel>
-#include <QPalette>
-
 namespace Ui {
 class sign_in;
 }
@@ -30,6 +21,7 @@ public:
     void clearAll();
     bool judgeEmpty();
 
+
 private slots:
     void on_loginbtn_clicked();
 
@@ -39,10 +31,9 @@ private slots:
 
 private:
 	Ui::sign_in * ui;
-    QSqlTableModel * model;
 	MainWindow * mw;
 signals:
-    void toMainWindow(QString,QString);
+    void toMainWindow(QString);
 };
 
 #endif // SIGN_IN_H

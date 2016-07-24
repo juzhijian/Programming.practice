@@ -16,11 +16,13 @@ RC_FILE += eve.rc
 SOURCES += main.cpp\
         sign_in.cpp \
     mainwindow.cpp \
-    registerdialog.cpp
+    registerdialog.cpp \
+    mysql.cpp
 
 HEADERS  += sign_in.h \
     mainwindow.h \
-    registerdialog.h
+    registerdialog.h \
+    mysql.h
 
 FORMS    += sign_in.ui \
     mainwindow.ui \

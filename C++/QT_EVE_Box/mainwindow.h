@@ -3,10 +3,7 @@
 
 #include <QMainWindow>
 
-#include <QDebug>
-#include <QSqlTableModel>
-#include <QSqlRecord>
-#include <QMessageBox>
+#include "mysql.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,18 +17,15 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void Hcy_xieru();
-
 private slots:
 
-    void comesign_in(QString,QString);
+    void comesign_in(QString);
 
     void on_pushButton_3_clicked();
 
 private:
     Ui::MainWindow *ui;
-    QString studentname,studentnum;
-    QSqlTableModel *model;
+    QString user_name;
 
 signals:
     void tosign_in();
