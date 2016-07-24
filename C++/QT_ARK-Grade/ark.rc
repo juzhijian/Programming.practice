@@ -25,8 +25,8 @@ VS_VERSION_INFO VERSIONINFO
             BEGIN
                 VALUE "CompanyName", "夏小雨\0"
                 VALUE "FileDescription", "方舟等级生成工具\0"
-                VALUE "FileVersion", "2.1.0.00\0"
-                VALUE "ProductVersion", "2.1.0.00\0"
+                VALUE "FileVersion", "2.2.0.00\0"
+                VALUE "ProductVersion", "2.2.0.00\0"
                 VALUE "LegalCopyright", "版权所有 (C) 夏小雨\0"
                 VALUE "LegalTrademarks", "夏小雨\0"
                 VALUE "OriginalFilename", "ARK-Grade.exe\0"

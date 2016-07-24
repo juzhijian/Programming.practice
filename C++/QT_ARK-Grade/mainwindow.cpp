@@ -1,14 +1,10 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QString>
-#include <QSettings>
-#include <QtCore/QTextStream>
-#include <QtCore/QFile>
-#include <QtCore/QIODevice>
-#include <QFileDialog>
-#include <QtGui>
+
 #include <QtWidgets>
-#include <QVector>
+
+//网页地址
+const QString URLSTR = "http://blog.csdn.net/juzhijian/article/details/51866045";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,8 +15,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->buttonGroup->setId(ui->radioButton_2,1);
     ui->buttonGroup->setId(ui->radioButton_3,2);
     //设置注册对话框标题
-    QString vv = "V2.1";
-    this->setWindowTitle(QStringLiteral("方舟等级生成 ")+vv+QStringLiteral(" 32bit"));
+    vv = "2.2";
+    this->setWindowTitle(QStringLiteral("方舟等级生成 V")+vv+QStringLiteral(" 32bit"));
+    //检查更新
+    install();
 }
 
 MainWindow::~MainWindow()
@@ -28,6 +26,43 @@ MainWindow::~MainWindow()
     delete ui;
 }
 //更新
+void MainWindow::install()
+{
+    QUrl url(URLSTR);
+    QNetworkAccessManager manager;
+    QEventLoop loop;
+    //qDebug() << "Reading code form " << URLSTR;
+    //发出请求
+    QNetworkReply *reply = manager.get(QNetworkRequest(url));
+    //请求结束并下载完成后，退出子事件循环
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    //开启子事件循环
+    loop.exec();
+
+    //将读到的信息写入文件
+    QString code = reply->readAll();
+    QString z;
+    for(int i = 1;i<10000;i++)
+    {
+        if (code.mid(i,7)=="<title>")
+        {
+            z = code.mid(i+17,3);
+        }
+    }
+    if(z!=vv)
+    {
+        QMessageBox message(QMessageBox::Warning,QStringLiteral("提示"),
+                            QStringLiteral("检查到新版本,程序需要更新！"),
+                            QMessageBox::Yes|QMessageBox::No);
+        if (message.exec()==QMessageBox::Yes)
+           {
+            QDesktopServices::openUrl(url);
+           }
+    }
+    else {
+        QDesktopServices::openUrl(url);
+    }
+}
 
 //等级函数仿官方版
 QString function_level_normal(int a)
