@@ -15,8 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->buttonGroup->setId(ui->radioButton_2,1);
     ui->buttonGroup->setId(ui->radioButton_3,2);
     //设置注册对话框标题
-    vv = "2.2";
-    this->setWindowTitle(QStringLiteral("方舟等级生成 V")+vv+QStringLiteral(" 32bit"));
+    vv = "2.4";
+    this->setWindowTitle(QStringLiteral("方舟等级生成 V")+vv+QStringLiteral(" 64bit"));
     //检查更新
     install();
 }
@@ -78,13 +78,13 @@ QString function_level_normal(int a)
 }
 
 //等级函数自定义版
-QString function_level_custom(int a,long L_num1,int b)
+QString function_level_custom(int a,unsigned long long L_num1,int b)
 {
     QString level = "ExperiencePointsForLevel[0]=10";
     for(int i=1;i<a;i++)
     {
 
-        L_num1 = b*(L_num1+5*i)/100;
+        L_num1 = (b+100)*(L_num1+5*i)/100;
         level = level + ",ExperiencePointsForLevel[" + QString::number(i) + "]=" + QString::number(L_num1);
     }
     return level;
@@ -138,9 +138,9 @@ void MainWindow::on_pushButton_clicked()
     }
     if(pd==1)//自定义
     {
-        QVector<long> L_num(1);//经验
-        L_num[0] = ui->lineEdit->text().toLong();
-        L_num[1] = ui->lineEdit_2->text().toLong();
+        QVector<unsigned long long> L_num(1);//经验
+        L_num[0] = ui->lineEdit->text().toLongLong();
+        L_num[1] = ui->lineEdit_2->text().toLongLong();
         QVector<int> num1(2);//经验系数
         num1[0] = ui->lineEdit_20->text().toInt();
         num1[1] = ui->lineEdit_19->text().toInt();
