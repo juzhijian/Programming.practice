@@ -56,11 +56,11 @@ void MainWindow::install()
                             QMessageBox::Yes|QMessageBox::No);
         if (message.exec()==QMessageBox::Yes)
            {
-            QDesktopServices::openUrl(url);
+            QDesktopServices::openUrl(QUrl("http://blog.jzhijian.com/"));
            }
     }
     else {
-        QDesktopServices::openUrl(url);
+        QDesktopServices::openUrl(QUrl("http://blog.jzhijian.com/"));
     }
 }
 
