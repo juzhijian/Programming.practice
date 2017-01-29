@@ -27,6 +27,8 @@ private slots:
 
     void on_radioButton_clicked();
 
+    void on_lineEdit_40_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
 };

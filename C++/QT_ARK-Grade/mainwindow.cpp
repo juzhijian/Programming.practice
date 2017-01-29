@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->buttonGroup->setId(ui->radioButton_2,1);
     ui->buttonGroup->setId(ui->radioButton_3,2);
     //设置注册对话框标题
-    vv = "2.4";
+    vv = "2.5";
     this->setWindowTitle(QStringLiteral("方舟等级生成 V")+vv+QStringLiteral(" 64bit"));
     //检查更新
     install();
@@ -197,10 +197,21 @@ void MainWindow::on_pushButton_clicked()
             "PerLevelStatsMultiplier_DinoWild[7]=" + QString::number(ui->lineEdit_65->text().toInt()) + "\n" +
             "PerLevelStatsMultiplier_DinoWild[8]=" + QString::number(ui->lineEdit_66->text().toInt()) + "\n" +
             "PerLevelStatsMultiplier_DinoWild[9]=" + QString::number(ui->lineEdit_68->text().toInt()) + "\n";
-
+    //恐龙繁殖
+    QString DinosaurDreeding=
+            "MatingIntervalMultiplier=" + QString::number(ui->lineEdit_37->text().toFloat(),'f', 6) + "\n" +
+            "LayEggIntervalMultiplier=" + QString::number(ui->lineEdit_38->text().toFloat(),'f', 6) + "\n" +
+            "EggHatchSpeedMultiplier=" + QString::number(ui->lineEdit_39->text().toFloat(),'f', 6) + "\n" +
+            "BabyMatureSpeedMultiplier=" + QString::number(ui->lineEdit_40->text().toFloat(),'f', 6) + "\n" +
+            "BabyFoodConsumptionSpeedMultiplier=" + QString::number(ui->lineEdit_41->text().toFloat(),'f', 6) + "\n" +
+            "BabyCuddleIntervalMultiplier=" + QString::number(ui->lineEdit_42->text().toFloat(),'f', 6) + "\n" +
+            "BabyCuddleGracePeriodMultiplier=" + QString::number(ui->lineEdit_97->text().toFloat(),'f', 6) + "\n" +
+            "BabyImprintingStatScaleMultiplier=" + QString::number(ui->lineEdit_43->text().toFloat(),'f', 6) + "\n" +
+            "BabyCuddleLoseImprintQualitySpeedMultiplier=" + QString::number(ui->lineEdit_44->text().toFloat(),'f', 6) + "\n";
     //ui->textBrowser->setText(QString::number(aaaa));
     //生成文本
-    ui->textBrowser->setText(sh+player+DinoTamed+DinoWild+player_levle+dinosaur_level+function_Research(num[0],num[1]));
+    ui->textBrowser->setText(sh + player + DinoTamed + DinoWild + player_levle + dinosaur_level
+                             + function_Research(num[0],num[1]) + DinosaurDreeding);
 
     //导出INI文件
     QString path = QFileDialog::getSaveFileName(this, tr("Open ini"), "Game", tr("ini Files (*.ini)"));
@@ -238,4 +249,12 @@ void MainWindow::on_radioButton_2_clicked()
 void MainWindow::on_radioButton_clicked()
 {
     ui->textBrowser->setText(QStringLiteral("您选择了仿官方版!!"));
+}
+
+//恐龙繁殖中宝宝成熟时间被改变
+void MainWindow::on_lineEdit_40_textChanged(const QString &arg1)
+{
+    float AttentionIterval;
+    AttentionIterval = 1/ui->lineEdit_40->text().toFloat();
+    ui->lineEdit_42->setText(QString::number(AttentionIterval,'f', 6));
 }
